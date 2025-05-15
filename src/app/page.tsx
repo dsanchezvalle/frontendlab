@@ -7,7 +7,7 @@ export default function Home() {
           Coming soon...
         </h1>
         <p className="text-base sm:text-lg text-muted-foreground max-w-md font-[family-name:var(--font-lora)]">
-          We're building something great. Stay tuned!
+          We&apos;re building something great. Stay tuned!
         </p>
       </main>
       {/* Footer */}
