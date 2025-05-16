@@ -13,7 +13,7 @@ export default function Home() {
       {/* Footer */}
       <footer className="w-full border-gray-200 py-4 text-sm text-gray-500 text-center">
         <div className="flex flex-col sm:flex-row items-center justify-between max-w-full mx-auto gap-2 px-4">
-          <span>© {new Date().getFullYear()} David Sánchez Valle. All rights reserved.</span>
+          <span>© {new Date().getFullYear()} Frontend Lab by David Sánchez Valle</span>
           <div className="flex gap-4">
             <a
               href="https://github.com/dsanchezvalle"
@@ -30,7 +30,7 @@ export default function Home() {
               LinkedIn
             </a>
             <a
-              href="mailto:dsanva2004@gmail.com"
+              href="mailto:david@frontendlab.dev"
             >
               Contact
             </a>
