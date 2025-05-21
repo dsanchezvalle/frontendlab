@@ -5,7 +5,12 @@ import { NextThemesProvider } from './NextThemesProvider';
 
 export function ThemeProviders({ children }: { children: ReactNode }) {
   return (
-    <NextThemesProvider>
+    <NextThemesProvider 
+      attribute="class"
+      defaultTheme="system"
+      enableSystem
+      disableTransitionOnChange
+    >
       {children}
     </NextThemesProvider>
   );
