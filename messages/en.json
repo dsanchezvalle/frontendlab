@@ -1,0 +1,69 @@
+{
+    "HomePage": {
+      "nav": {
+        "articles": "Articles",
+        "playground": "Playground",
+        "about": "About"
+      },
+      "hero": {
+        "title": "Build. Learn. Share",
+        "highlight": "Frontend.",
+        "description": "A space for developers to explore the latest frontend technologies, share knowledge, and experiment with frontend concepts and tools.",
+        "cta": {
+          "articles": "Read Articles",
+          "playground": "Explore Playground"
+        }
+      },
+      "articles": {
+        "title": "Latest Articles",
+        "description": "Lessons learned, practical guides, and explorations around frontend development",
+        "item1": {
+          "date": "Dec 15, 2024",
+          "title": "Introduction to React Server Components",
+          "description": "Exploring the new server-side rendering capabilities in React 18+",
+          "tag1": "React",
+          "tag2": "Next.js"
+        },
+        "item2": {
+          "date": "Dec 10, 2024",
+          "title": "CSS Grid vs Flexbox: When to Use Each",
+          "description": "A practical guide to choosing the right layout tool for the job",
+          "tag1": "CSS",
+          "tag2": "Layout"
+        },
+        "item3": {
+          "date": "Dec 5, 2024",
+          "title": "Performance Optimization in Vue 3 Applications",
+          "description": "Advanced techniques to improve the speed and efficiency of your Vue apps",
+          "tag1": "Vue.js",
+          "tag2": "Performance"
+        }
+      },
+      "playground": {
+        "title": "Project Playground",
+        "description": "Exploring ideas through experiments, demos, and interactive projects",
+        "item1": {
+          "title": "CSS Variables Palette Generator",
+          "description": "Interactive tool to create color palettes with custom CSS variables",
+          "tag1": "CSS",
+          "tag2": "JavaScript"
+        },
+        "item2": {
+          "title": "Framer Motion Animation Playground",
+          "description": "Collection of reusable animations and transitions for React",
+          "tag1": "React",
+          "tag2": "Framer Motion"
+        },
+        "item3": {
+          "title": "Live Code Editor",
+          "description": "Web-based editor with real-time preview for HTML, CSS, and JavaScript",
+          "tag1": "Monaco Editor",
+          "tag2": "TypeScript"
+        }
+      },
+      "footer": {
+        "author": "by David Sánchez Valle."
+      }
+    }
+  }
+  
