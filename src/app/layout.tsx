@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { DM_Sans, Lora, JetBrains_Mono } from "next/font/google";
-import { ThemeProviders } from "@/app/providers";
-import "./globals.css";
+import { ThemeProviders } from "@/providers";
+import "../styles/globals.css";
 
 const dmSans = DM_Sans({
   subsets: ["latin"],
