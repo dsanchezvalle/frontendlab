@@ -20,14 +20,14 @@ export default function Home() {
             <span className="font-mono font-bold text-lg">Frontendlab</span>
           </div>
           <div className="flex items-center">
-            <nav className="hidden md:flex items-center space-x-6 mr-4">
-              <Link href="#articles" className="text-sm font-medium hover:text-primary transition-colors">
+            <nav className="hidden md:flex items-center space-x-4 flex-shrink-0 mr-4"> 
+              <Link href="#articles" className="text-sm font-medium hover:text-primary transition-colors whitespace-nowrap">
                 {t('nav.articles')}
               </Link>
-              <Link href="#playground" className="text-sm font-medium hover:text-primary transition-colors">
+              <Link href="#playground" className="text-sm font-medium hover:text-primary transition-colors whitespace-nowrap">
                 {t('nav.playground')}
               </Link>
-              <Link href="#about" className="text-sm font-medium hover:text-primary transition-colors">
+              <Link href="#about" className="text-sm font-medium hover:text-primary transition-colors whitespace-nowrap">
                 {t('nav.about')}
               </Link>
             </nav>
