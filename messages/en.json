@@ -17,6 +17,7 @@
       "articles": {
         "title": "Latest Articles",
         "description": "Lessons learned, practical guides, and explorations around frontend development",
+        "viewAll": "View all articles",
         "item1": {
           "date": "Dec 15, 2024",
           "title": "Introduction to React Server Components",
@@ -42,6 +43,7 @@
       "playground": {
         "title": "Project Playground",
         "description": "Exploring ideas through experiments, demos, and interactive projects",
+        "viewAll": "View all projects",
         "item1": {
           "title": "CSS Variables Palette Generator",
           "description": "Interactive tool to create color palettes with custom CSS variables",
@@ -64,6 +66,24 @@
       "footer": {
         "author": "by David Sánchez Valle."
       }
+    },
+    "LabPage": {
+      "title": "The Lab",
+      "description": "Explore personal frontend projects, experiments, and ideas.",
+      "example": {
+        "title": "Design System Playground",
+        "description": "A collection of reusable UI components built with Tailwind and Radix."
+      },
+      "backToHome": "Back to homepage"
+    },
+    "ArticlesPage": {
+      "title": "All Articles",
+      "description": "Deep dives, tutorials, and insights on modern frontend development.",
+      "example": {
+        "title": "React Server Components in Practice",
+        "description": "An exploration of how to use Server Components effectively in Next.js apps."
+      },
+      "backToHome": "Back to homepage"
     }
   }
   
