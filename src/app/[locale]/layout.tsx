@@ -3,8 +3,13 @@ import { DM_Sans, Lora, JetBrains_Mono } from "next/font/google";
 import { ThemeProviders } from "@/providers";
 import "../../styles/globals.css";
 import { NextIntlClientProvider, hasLocale } from "next-intl";
+import { getTranslations } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
+import { ThemeToggle } from '../../components/shared/ThemeToggle';
+import LanguageSwitcher from '../../components/shared/LanguageSwitcher';
+import Link from "next/link";
+import { Code2 } from "lucide-react";
 
 const dmSans = DM_Sans({
   subsets: ["latin"],
@@ -31,12 +36,13 @@ export default async function RootLayout({
   params
 }: Readonly<{
   children: React.ReactNode;
-  params: Promise<{locale: string}>
+  params: { locale: string }
 }>) {
   const { locale } = await params;
   if (!hasLocale(routing.locales, locale)){
     notFound();
   }
+  const t = await getTranslations({ locale, namespace: 'HomePage' });
 
   return (
     <html lang={locale} suppressHydrationWarning>
@@ -45,7 +51,51 @@ export default async function RootLayout({
       >
         <NextIntlClientProvider>
           <ThemeProviders>
-            {children}
+            <div className="min-h-screen gradient-background backdrop-blur bg-background/70">
+              {/* Header */}
+              <header className="sticky top-0 z-50 backdrop-blur">
+                <div className="px-4 py-4 flex items-center justify-between">
+                  <div className="container flex items-center space-x-2 grow">
+                    <Code2 className="h-6 w-6" />
+                    <span className="font-mono font-bold text-lg">Frontendlab</span>
+                  </div>
+                  <div className="flex items-center">
+                    <nav className="hidden md:flex items-center space-x-4 flex-shrink-0 mr-4"> 
+                      <Link href="#articles" className="text-sm font-medium hover:text-primary transition-colors whitespace-nowrap">
+                        {t('nav.articles')}
+                      </Link>
+                      <Link href="#playground" className="text-sm font-medium hover:text-primary transition-colors whitespace-nowrap">
+                        {t('nav.playground')}
+                      </Link>
+                      <Link href="#about" className="text-sm font-medium hover:text-primary transition-colors whitespace-nowrap">
+                        {t('nav.about')}
+                      </Link>
+                    </nav>
+                    <LanguageSwitcher />
+                    <ThemeToggle />
+                  </div>
+                </div>
+              </header>
+              <main>
+                {children}
+              </main>
+              <footer className="py-4">
+                <div className="mx-auto px-4">
+                  <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+                    <div className="flex items-center space-x-1">
+                      <Code2 className="h-4 w-4" />
+                      <span className="font-mono font-medium">Frontendlab</span>
+                      <span className="text-xs sm:text-sm">{t('footer.author')} © {new Date().getFullYear()}.</span>
+                    </div>
+                    <nav className="flex gap-4 font-sans">
+                      <a href="https://github.com/dsanchezvalle" target="_blank" rel="noopener noreferrer">GitHub</a>
+                      <a href="https://www.linkedin.com/in/dsanchezvalle/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                      <a href="mailto:david@frontendlab.dev">Contact</a>
+                    </nav>
+                  </div>
+                </div>
+              </footer>
+            </div>
           </ThemeProviders>
         </NextIntlClientProvider>
       </body>
