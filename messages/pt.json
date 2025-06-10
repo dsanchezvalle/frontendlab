@@ -17,6 +17,7 @@
       "articles": {
         "title": "Últimos artigos",
         "description": "Lições aprendidas, guias práticos e explorações sobre desenvolvimento frontend",
+        "viewAll": "Ver todos os artigos",
         "item1": {
           "date": "15 Dez, 2024",
           "title": "Introdução ao React Server Components",
@@ -42,6 +43,7 @@
       "playground": {
         "title": "Playground de projetos",
         "description": "Exploração de ideias com experimentos, demos e projetos interativos",
+        "viewAll": "Ver todos os projetos",
         "item1": {
           "title": "Gerador de paleta com variáveis CSS",
           "description": "Ferramenta interativa para criar paletas com variáveis CSS personalizadas",
@@ -64,6 +66,24 @@
       "footer": {
         "author": "por David Sánchez Valle."
       }
+    },
+    "LabPage": {
+      "title": "O Laboratório",
+      "description": "Explore projetos pessoais de frontend, experimentos e ideias.",
+      "example": {
+        "title": "Área de testes de Design System",
+        "description": "Uma coleção de componentes de UI reutilizáveis construídos com Tailwind e Radix."
+      },
+      "backToHome": "Voltar para o início"
+    },
+    "ArticlesPage": {
+      "title": "Todos os artigos",
+      "description": "Estudos aprofundados, tutoriais e insights sobre o desenvolvimento frontend moderno.",
+      "example": {
+        "title": "React Server Components na prática",
+        "description": "Uma exploração de como usar Server Components de forma eficaz em aplicações Next.js."
+      },
+      "backToHome": "Voltar para o início"
     }
   }
   
