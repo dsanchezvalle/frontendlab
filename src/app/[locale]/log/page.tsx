@@ -1,4 +1,3 @@
-import { getTranslations } from 'next-intl/server';
 import { LogIndex } from '@/components/sections/log/LogIndex';
 
 // export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
@@ -11,7 +10,6 @@ import { LogIndex } from '@/components/sections/log/LogIndex';
 // }
 
 export default async function ArticlesPage() {
-  const t = await getTranslations('ArticlesPage');
 
   return (
     <div className="min-h-screen">
