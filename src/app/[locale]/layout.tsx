@@ -53,7 +53,7 @@ export default async function RootLayout({
           <ThemeProviders>
             <div className="min-h-screen gradient-background backdrop-blur bg-background/70">
               {/* Header */}
-              <header className="sticky top-0 z-50 backdrop-blur">
+              <header className="z-50 backdrop-blur">
                 <div className="px-4 py-4 flex items-center justify-between">
                   <div className="container flex items-center space-x-2 grow">
                     <Code2 className="h-6 w-6" />
