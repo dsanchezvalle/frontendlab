@@ -8,6 +8,7 @@ import {
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import {
+  ArrowRight,
   ExternalLink,
   Calendar,
   Code2,
@@ -42,13 +43,20 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* Articles */}
+      {/* The Log */}
       <section id="articles" className="py-12">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold mb-4">{t('articles.title')}</h2>
-            <p className="text-muted-foreground font-serif">{t('articles.description')}</p>
+          <div className="flex items-center justify-between mb-3 max-w-6xl mx-auto">
+            <h2 className="text-3xl font-bold">{t('articles.title')}</h2>
+              <Link href={`/${locale}/log`} className="flex items-center gap-2">
+                <Button variant="outline" className="group cursor-pointer">
+                    {t('articles.viewAll')}
+                    <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                </Button>
+              </Link>
           </div>
+          <p className="text-muted-foreground font-serif mb-8 max-w-6xl mx-auto">{t('articles.description')}</p>
+
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
             {[1, 2, 3].map((i) => (
               <Card key={i}>
@@ -69,23 +77,38 @@ export default async function Home() {
               </Card>
             ))}
           </div>
-          <div className="mt-8 text-center">
-            <Link href={`/${locale}/log`}>
-              <Button variant="ghost" className="font-medium cursor-pointer">{t('articles.viewAll')}...</Button>
-            </Link>
+          <div className="mt-8 text-left max-w-6xl mx-auto">
+            <Link href={`/${locale}/log`} className="sm:hidden">
+                <Button variant="outline" className="group cursor-pointer">
+                    {t('articles.viewAll')}
+                    <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                </Button>
+              </Link>
           </div>
         </div>
       </section>
 
-      {/* Playground */}
+      {/* The Lab */}
       <section id="playground" className="py-16">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
+          {/* <div className="text-center mb-12">
             <h2 className="text-3xl font-bold mb-4">{t('playground.title')}</h2>
             <p className="text-muted-foreground font-serif">{t('playground.description')}</p>
+          </div> */}
+
+          <div className="flex items-center justify-between mb-3 max-w-6xl mx-auto">
+            <h2 className="text-3xl font-bold">{t('playground.title')}</h2>
+              <Link href={`/${locale}/lab`} className="flex items-center gap-2">
+                <Button variant="outline" className="group cursor-pointer">
+                    {t('playground.viewAll')}
+                    <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                </Button>
+              </Link>
           </div>
+          <p className="text-muted-foreground font-serif mb-8 max-w-6xl mx-auto">{t('playground.description')}</p>
+
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-            {[1, 2, 3].map((i) => {
+            {[1, 2, 3 ].map((i) => {
               const iconComponents = [Palette, Zap, Code2];
               const Icon = iconComponents[i - 1];
               return (
@@ -108,10 +131,13 @@ export default async function Home() {
               );
             })}
           </div>
-          <div className="mt-8 text-center">
-            <Link href={`/${locale}/lab`}>
-              <Button variant="ghost" className="font-medium cursor-pointer">{t('playground.viewAll')}...</Button>
-            </Link>
+          <div className="mt-8 text-left max-w-6xl mx-auto">
+            <Link href={`/${locale}/lab`} className="sm:hidden">
+                <Button variant="outline" className="group cursor-pointer">
+                    {t('playground.viewAll')}
+                    <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                </Button>
+              </Link>
           </div>
         </div>
       </section>
