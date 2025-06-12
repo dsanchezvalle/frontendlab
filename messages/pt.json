@@ -15,9 +15,9 @@
         }
       },
       "articles": {
-        "title": "Últimos artigos",
+        "title": "The Log",
         "description": "Lições aprendidas, guias práticos e explorações sobre desenvolvimento frontend",
-        "viewAll": "Ver todos os artigos",
+        "viewAll": "Ver todos",
         "item1": {
           "date": "15 Dez, 2024",
           "title": "Introdução ao React Server Components",
@@ -41,9 +41,9 @@
         }
       },
       "playground": {
-        "title": "Playground de projetos",
+        "title": "The Lab",
         "description": "Exploração de ideias com experimentos, demos e projetos interativos",
-        "viewAll": "Ver todos os projetos",
+        "viewAll": "Ver todos",
         "item1": {
           "title": "Gerador de paleta com variáveis CSS",
           "description": "Ferramenta interativa para criar paletas com variáveis CSS personalizadas",
@@ -68,7 +68,7 @@
       }
     },
     "LabPage": {
-      "title": "O Laboratório",
+      "title": "The Lab",
       "description": "Explore projetos pessoais de frontend, experimentos e ideias.",
       "example": {
         "title": "Área de testes de Design System",

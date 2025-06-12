@@ -15,9 +15,9 @@
         }
       },
       "articles": {
-        "title": "Latest Articles",
+        "title": "The Log",
         "description": "Lessons learned, practical guides, and explorations around frontend development",
-        "viewAll": "View all articles",
+        "viewAll": "View all",
         "item1": {
           "date": "Dec 15, 2024",
           "title": "Introduction to React Server Components",
@@ -41,9 +41,9 @@
         }
       },
       "playground": {
-        "title": "Project Playground",
+        "title": "The Lab",
         "description": "Exploring ideas through experiments, demos, and interactive projects",
-        "viewAll": "View all projects",
+        "viewAll": "View all",
         "item1": {
           "title": "CSS Variables Palette Generator",
           "description": "Interactive tool to create color palettes with custom CSS variables",
