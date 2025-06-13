@@ -133,7 +133,6 @@ export function LogIndex() {
                 <SearchInput
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    
                 />
             </div>
           </div>
