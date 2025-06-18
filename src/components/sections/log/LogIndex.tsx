@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import SearchInput from "@/components/shared/SearchInput";
 import { Button } from "@/components/ui/button"
+import { createSlug } from "@/lib/slug"
 import Link from "next/link"
 
 type LogPost = {
@@ -144,35 +145,36 @@ export function LogIndex() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredPosts.map((post) => (
-            <Card
-              key={post.id}
-              className="hover:shadow-lg transition-all duration-200 hover:-translate-y-1 cursor-pointer group"
-            >
-              <CardHeader className="pb-3">
-                <div className="flex items-center gap-2 text-sm text-muted-foreground mb-2">
-                  <Calendar className="h-4 w-4" />
-                  <span>{post.date}</span>
-                  <span>•</span>
-                  <Clock className="h-4 w-4" />
-                  <span>{post.readTime}</span>
-                </div>
-                <CardTitle className="text-xl leading-tight group-hover:text-primary transition-colors">
-                  {post.title}
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="pt-0">
-                <CardDescription className="text-sm leading-relaxed mb-4 line-clamp-3">
-                  {post.description}
-                </CardDescription>
-                <div className="flex flex-wrap gap-2">
-                  {post.tags.map((tag) => (
-                    <Badge key={tag} variant="secondary" className="text-xs font-medium">
-                      {tag}
-                    </Badge>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
+            <Link key={post.id} href={`/log/${createSlug(post.id, post.title)}`}>
+              <Card
+                className="hover:shadow-lg transition-all duration-200 hover:-translate-y-1 cursor-pointer group"
+              >
+                <CardHeader className="pb-3">
+                  <div className="flex items-center gap-2 text-sm text-muted-foreground mb-2">
+                    <Calendar className="h-4 w-4" />
+                    <span>{post.date}</span>
+                    <span>•</span>
+                    <Clock className="h-4 w-4" />
+                    <span>{post.readTime}</span>
+                  </div>
+                  <CardTitle className="text-xl leading-tight group-hover:text-primary transition-colors">
+                    {post.title}
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="pt-0">
+                  <CardDescription className="text-sm leading-relaxed mb-4 line-clamp-3">
+                    {post.description}
+                  </CardDescription>
+                  <div className="flex flex-wrap gap-2">
+                    {post.tags.map((tag) => (
+                      <Badge key={tag} variant="secondary" className="text-xs font-medium">
+                        {tag}
+                      </Badge>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            </Link>  
           ))}
         </div>
 
