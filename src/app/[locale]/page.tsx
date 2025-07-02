@@ -1,21 +1,14 @@
 import { Button } from '@/components/ui/button';
 import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle
-} from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import {
   ArrowRight,
-  ExternalLink,
-  Calendar,
   Code2,
   Palette,
   Zap
 } from "lucide-react";
 import Link from 'next/link';
+import { mockLogPosts } from '@/components/sections/log/mocks';
+import { mockProjects } from '@/components/sections/lab/mocks';
+import { PreviewCard } from '@/components/shared/PreviewCard';
 
 import { getTranslations, getLocale } from 'next-intl/server';
 
@@ -58,23 +51,16 @@ export default async function Home() {
           <p className="text-muted-foreground font-serif mb-8 max-w-6xl mx-auto">{t('articles.description')}</p>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-            {[1, 2, 3].map((i) => (
-              <Card key={i}>
-                <CardHeader>
-                  <div className="flex items-center gap-2 text-sm text-muted-foreground mb-2">
-                    <Calendar className="h-4 w-4" />
-                    <span>{t(`articles.item${i}.date`)}</span>
-                  </div>
-                  <CardTitle>{t(`articles.item${i}.title`)}</CardTitle>
-                  <CardDescription>{t(`articles.item${i}.description`)}</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <div className="flex gap-2">
-                    <Badge variant="secondary">{t(`articles.item${i}.tag1`)}</Badge>
-                    <Badge variant="secondary">{t(`articles.item${i}.tag2`)}</Badge>
-                  </div>
-                </CardContent>
-              </Card>
+            {mockLogPosts.slice(0, 3).map((post) => (
+              <PreviewCard
+                key={post.id}
+                title={post.title}
+                description={post.description}
+                date={post.date}
+                readTime={post.readTime}
+                tags={post.tags}
+                href={`/${locale}/log/${post.id}-${post.title.toLowerCase().replace(/\s+/g, '-')}`}
+              />
             ))}
           </div>
           <div className="mt-8 text-left max-w-6xl mx-auto">
@@ -91,11 +77,6 @@ export default async function Home() {
       {/* The Lab */}
       <section id="playground" className="py-16">
         <div className="container mx-auto px-4">
-          {/* <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold mb-4">{t('playground.title')}</h2>
-            <p className="text-muted-foreground font-serif">{t('playground.description')}</p>
-          </div> */}
-
           <div className="flex items-center justify-between mb-3 max-w-6xl mx-auto">
             <h2 className="text-3xl font-bold">{t('playground.title')}</h2>
               <Link href={`/${locale}/lab`} className="flex items-center gap-2">
@@ -108,26 +89,18 @@ export default async function Home() {
           <p className="text-muted-foreground font-serif mb-8 max-w-6xl mx-auto">{t('playground.description')}</p>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-            {[1, 2, 3 ].map((i) => {
-              const iconComponents = [Palette, Zap, Code2];
-              const Icon = iconComponents[i - 1];
+            {mockProjects.slice(0, 3).map((project, i) => {
+              const Icon = [Palette, Zap, Code2][i];
+
               return (
-                <Card key={i}>
-                  <CardHeader>
-                    <div className="flex items-center justify-between">
-                      <Icon className="h-5 w-5" />
-                      <ExternalLink className="h-4 w-4 opacity-0 group-hover:opacity-100 transition-opacity" />
-                    </div>
-                    <CardTitle>{t(`playground.item${i}.title`)}</CardTitle>
-                    <CardDescription>{t(`playground.item${i}.description`)}</CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="flex gap-2">
-                      <Badge variant="outline">{t(`playground.item${i}.tag1`)}</Badge>
-                      <Badge variant="outline">{t(`playground.item${i}.tag2`)}</Badge>
-                    </div>
-                  </CardContent>
-                </Card>
+                <PreviewCard
+                  key={project.id}
+                  title={project.title}
+                  description={project.description}
+                  tags={project.tags}
+                  icon={<Icon />} 
+                  href={`/${locale}/lab/${project.id}-${project.title.toLowerCase().replace(/\s+/g, '-')}`}
+                />
               );
             })}
           </div>
