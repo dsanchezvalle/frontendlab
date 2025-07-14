@@ -1,8 +1,8 @@
 {
   "HomePage": {
     "nav": {
-      "articles": "Artículos",
-      "playground": "Laboratorio",
+      "log": "The Log",
+      "lab": "The Lab",
       "about": "Acerca de"
     },
     "hero": {

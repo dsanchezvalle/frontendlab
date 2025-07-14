@@ -1,8 +1,8 @@
 {
   "HomePage": {
     "nav": {
-      "articles": "Articles",
-      "playground": "Playground",
+      "log": "The Log",
+      "lab": "The Lab",
       "about": "About"
     },
     "hero": {
