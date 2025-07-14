@@ -1,73 +1,73 @@
 {
-    "HomePage": {
-      "nav": {
-        "articles": "Artículos",
-        "playground": "Laboratorio",
-        "about": "Acerca de"
-      },
-      "hero": {
-        "title": "Construir. Aprender. Compartir",
-        "highlight": "Frontend.",
-        "description": "Un espacio para que desarrolladores exploren tecnologías frontend, compartan conocimiento y experimenten con conceptos y herramientas.",
-        "cta": {
-          "articles": "Leer artículos",
-          "playground": "Explorar laboratorio"
-        }
-      },
-      "articles": {
-        "title": "The Log",
-        "description": "Lecciones aprendidas, guías prácticas y exploraciones sobre desarrollo frontend",
-        "viewAll": "Ver todos",
-        "item1": {
-          "date": "15 Dic, 2024",
-          "title": "Introducción a React Server Components",
-          "description": "Explorando las nuevas capacidades de renderizado en servidor de React 18+",
-          "tag1": "React",
-          "tag2": "Next.js"
-        },
-        "item2": {
-          "date": "10 Dic, 2024",
-          "title": "CSS Grid vs Flexbox: Cuándo usar cada uno",
-          "description": "Guía práctica para elegir la herramienta de layout adecuada",
-          "tag1": "CSS",
-          "tag2": "Layout"
-        },
-        "item3": {
-          "date": "5 Dic, 2024",
-          "title": "Optimización de rendimiento en aplicaciones Vue 3",
-          "description": "Técnicas avanzadas para mejorar la velocidad y eficiencia de tus apps Vue",
-          "tag1": "Vue.js",
-          "tag2": "Rendimiento"
-        }
-      },
-      "playground": {
-        "title": "The Lab",
-        "description": "Exploración de ideas a través de experimentos, demos y proyectos interactivos",
-        "viewAll": "Ver todos",
-        "item1": {
-          "title": "Generador de paletas con variables CSS",
-          "description": "Herramienta interactiva para crear paletas de colores con variables CSS",
-          "tag1": "CSS",
-          "tag2": "JavaScript"
-        },
-        "item2": {
-          "title": "Laboratorio de animaciones con Framer Motion",
-          "description": "Colección de animaciones y transiciones reutilizables para React",
-          "tag1": "React",
-          "tag2": "Framer Motion"
-        },
-        "item3": {
-          "title": "Editor de código en vivo",
-          "description": "Editor web con vista previa en tiempo real para HTML, CSS y JavaScript",
-          "tag1": "Monaco Editor",
-          "tag2": "TypeScript"
-        }
-      },
-      "footer": {
-        "author": "por David Sánchez Valle."
+  "HomePage": {
+    "nav": {
+      "articles": "Artículos",
+      "playground": "Laboratorio",
+      "about": "Acerca de"
+    },
+    "hero": {
+      "title": "Construir. Aprender. Compartir",
+      "highlight": "Frontend.",
+      "description": "Un espacio para que desarrolladores exploren las últimas tecnologías frontend, compartan conocimiento y experimenten con conceptos y herramientas del frontend.",
+      "cta": {
+        "entries": "Leer entradas",
+        "experiments": "Explorar experimentos"
       }
     },
-    "LabPage": {
+    "articles": {
+      "title": "The Log",
+      "description": "Lecciones aprendidas, guías prácticas y exploraciones sobre desarrollo frontend",
+      "viewAll": "Ver todos",
+      "item1": {
+        "date": "15 Dic, 2024",
+        "title": "Introducción a React Server Components",
+        "description": "Explorando las nuevas capacidades de renderizado en servidor de React 18+",
+        "tag1": "React",
+        "tag2": "Next.js"
+      },
+      "item2": {
+        "date": "10 Dic, 2024",
+        "title": "CSS Grid vs Flexbox: Cuándo usar cada uno",
+        "description": "Guía práctica para elegir la herramienta de layout adecuada",
+        "tag1": "CSS",
+        "tag2": "Layout"
+      },
+      "item3": {
+        "date": "5 Dic, 2024",
+        "title": "Optimización de rendimiento en aplicaciones Vue 3",
+        "description": "Técnicas avanzadas para mejorar la velocidad y eficiencia de tus apps Vue",
+        "tag1": "Vue.js",
+        "tag2": "Rendimiento"
+      }
+    },
+    "playground": {
+      "title": "The Lab",
+      "description": "Exploración de ideas a través de experimentos, demos y proyectos interactivos",
+      "viewAll": "Ver todos",
+      "item1": {
+        "title": "Generador de paletas con variables CSS",
+        "description": "Herramienta interactiva para crear paletas de colores con variables CSS",
+        "tag1": "CSS",
+        "tag2": "JavaScript"
+      },
+      "item2": {
+        "title": "Laboratorio de animaciones con Framer Motion",
+        "description": "Colección de animaciones y transiciones reutilizables para React",
+        "tag1": "React",
+        "tag2": "Framer Motion"
+      },
+      "item3": {
+        "title": "Editor de código en vivo",
+        "description": "Editor web con vista previa en tiempo real para HTML, CSS y JavaScript",
+        "tag1": "Monaco Editor",
+        "tag2": "TypeScript"
+      }
+    },
+    "footer": {
+      "author": "por David Sánchez Valle."
+    }
+  },
+  "LabPage": {
     "title": "The Lab",
     "description": "Explora proyectos personales de frontend, experimentos e ideas.",
     "example": {
@@ -75,8 +75,8 @@
       "description": "Una colección de componentes UI reutilizables construidos con Tailwind y Radix."
     },
     "backToHome": "Volver al inicio"
-    },
-    "ArticlesPage": {
+  },
+  "ArticlesPage": {
     "title": "Todos los artículos",
     "description": "Análisis en profundidad, tutoriales y perspectivas sobre el desarrollo frontend moderno.",
     "example": {
@@ -84,6 +84,5 @@
       "description": "Una exploración de cómo usar Server Components de forma efectiva en apps Next.js."
     },
     "backToHome": "Volver al inicio"
-    }
   }
-  
+}
