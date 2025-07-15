@@ -18,7 +18,7 @@ export default async function Home() {
         <div className="container mx-auto px-4 text-center">
           <div className="max-w-4xl mx-auto space-y-6">
             <h1 className="text-4xl md:text-6xl font-bold tracking-tight">
-              {t("hero.title")}
+              {t("hero.title")}{" "}
               <span className="text-primary font-mono">
                 {t("hero.highlight")}
               </span>
