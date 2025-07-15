@@ -50,16 +50,16 @@ export default async function Home() {
       <section id="articles" className="py-12">
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between mb-3 max-w-6xl mx-auto">
-            <h2 className="text-3xl font-bold">{t("articles.title")}</h2>
+            <h2 className="text-3xl font-bold">{t("log.title")}</h2>
             <Link href={`/${locale}/log`} className="flex items-center gap-2">
               <Button variant="outline" className="group cursor-pointer">
-                {t("articles.viewAll")}
+                {t("log.viewAll")}
                 <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
               </Button>
             </Link>
           </div>
           <p className="text-muted-foreground font-serif mb-8 max-w-6xl mx-auto">
-            {t("articles.description")}
+            {t("log.description")}
           </p>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
@@ -80,7 +80,7 @@ export default async function Home() {
           <div className="mt-8 text-left max-w-6xl mx-auto">
             <Link href={`/${locale}/log`} className="sm:hidden">
               <Button variant="outline" className="group cursor-pointer">
-                {t("articles.viewAll")}
+                {t("log.viewAll")}
                 <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
               </Button>
             </Link>
@@ -92,16 +92,16 @@ export default async function Home() {
       <section id="playground" className="py-16">
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between mb-3 max-w-6xl mx-auto">
-            <h2 className="text-3xl font-bold">{t("playground.title")}</h2>
+            <h2 className="text-3xl font-bold">{t("lab.title")}</h2>
             <Link href={`/${locale}/lab`} className="flex items-center gap-2">
               <Button variant="outline" className="group cursor-pointer">
-                {t("playground.viewAll")}
+                {t("lab.viewAll")}
                 <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
               </Button>
             </Link>
           </div>
           <p className="text-muted-foreground font-serif mb-8 max-w-6xl mx-auto">
-            {t("playground.description")}
+            {t("lab.description")}
           </p>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
@@ -125,7 +125,7 @@ export default async function Home() {
           <div className="mt-8 text-left max-w-6xl mx-auto">
             <Link href={`/${locale}/lab`} className="sm:hidden">
               <Button variant="outline" className="group cursor-pointer">
-                {t("playground.viewAll")}
+                {t("lab.viewAll")}
                 <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
               </Button>
             </Link>

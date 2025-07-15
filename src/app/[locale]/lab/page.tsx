@@ -1,4 +1,4 @@
-import { LabIndex } from '@/components/sections/lab/LabIndex';
+import { LabIndex } from "@/components/sections/lab/LabIndex";
 
 // export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
 //   const t = await getTranslations({ locale, namespace: 'ArticlesPage' });
@@ -9,8 +9,7 @@ import { LabIndex } from '@/components/sections/lab/LabIndex';
 //   };
 // }
 
-export default async function ArticlesPage() {
-
+export default async function LabPage() {
   return (
     <div className="min-h-screen">
       <LabIndex />
