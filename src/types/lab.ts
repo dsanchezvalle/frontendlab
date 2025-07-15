@@ -1,9 +1,9 @@
-import { ElementType } from "react"
+import { ElementType } from "react";
 
-export type Project = {
-    id: string
-    title: string
-    description: string
-    icon: ElementType
-    tags: string[]
-  }
+export type LabExperiment = {
+  id: string;
+  title: string;
+  description: string;
+  icon: ElementType;
+  tags: string[];
+};

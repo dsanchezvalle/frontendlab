@@ -56,7 +56,7 @@ export default async function RootLayout({
               {/* Header */}
               <header className="z-50 backdrop-blur">
                 <div className="px-4 py-4 flex items-center justify-between">
-                  <Link href="/">
+                  <Link href={`/${locale}`}>
                     <div className="container flex items-center space-x-2 grow">
                       <Code2 className="h-6 w-6" />
                       <span className="font-mono font-bold text-lg">
