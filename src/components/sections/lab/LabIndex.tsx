@@ -1,60 +1,59 @@
-'use client'
+"use client";
 
-import {useState, useCallback } from "react"
-import { StickyTopSearchBar } from "@/components/shared/StickyTopSearchBar"
-import { mockProjects } from "./mocks"
-import type { Project } from "@/types"
-import { useDebouncedValue, useSearch } from "@/hooks"
-import { CardGrid } from "@/components/shared/CardGrid"
-import { PreviewCard } from "@/components/shared/PreviewCard"
+import { useState, useCallback } from "react";
+import { StickyTopSearchBar } from "@/components/shared/StickyTopSearchBar";
+import { mockExperiments } from "./mocks";
+import type { LabExperiment } from "@/types";
+import { useDebouncedValue, useSearch } from "@/hooks";
+import { CardGrid } from "@/components/shared/CardGrid";
+import { PreviewCard } from "@/components/shared/PreviewCard";
 // import { useDebouncedFetch } from "@/hooks/useDebouncedFetch" // Ready to swap later
 
 export function LabIndex() {
-  const [searchQuery, setSearchQuery] = useState("")
-  
+  const [searchQuery, setSearchQuery] = useState("");
+
   const debouncedSearchQuery = useDebouncedValue(searchQuery, 300);
 
   const filterFn = useCallback(
-    (project: Project, query: string) =>
+    (project: LabExperiment, query: string) =>
       project.title.toLowerCase().includes(query.toLowerCase()) ||
       project.description.toLowerCase().includes(query.toLowerCase()) ||
-      project.tags.some((tag) => tag.toLowerCase().includes(query.toLowerCase())),
+      project.tags.some((tag) =>
+        tag.toLowerCase().includes(query.toLowerCase())
+      ),
     []
-  )
+  );
 
   // Using mock data for now, replace with actual data fetching logic later
-  const { results: filteredProjects, isLoading } = useSearch({
-    data: mockProjects,
+  const { results: filteredExperiments, isLoading } = useSearch({
+    data: mockExperiments,
     query: debouncedSearchQuery,
     filterFn,
-  })
+  });
 
   //When using API:
-  // const { results: filteredProjects, isLoading } = useDebouncedFetch(searchQuery, '/api/projects')                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
+  // const { results: filteredExperiments, isLoading } = useDebouncedFetch(searchQuery, '/api/experiments')
 
   return (
     <>
       {/* Sticky Search Header */}
-      <StickyTopSearchBar
-        title="The Lab"
-        onSearchChange={setSearchQuery}
-      />
+      <StickyTopSearchBar title="The Lab" onSearchChange={setSearchQuery} />
 
-      {/* Projects Grid */}
-      <CardGrid isLoading={isLoading} >
-           {filteredProjects.map((project) => (
+      {/* Experiments Grid */}
+      <CardGrid isLoading={isLoading}>
+        {filteredExperiments.map((experiment) => (
           <PreviewCard
-            key={project.id}
-            title={project.title}
-            description={project.description}
-            tags={project.tags}
-            icon={<project.icon />}
-            //imageUrl={project.imageUrl}
-            href={`/projects/${project.id}`}
+            key={experiment.id}
+            title={experiment.title}
+            description={experiment.description}
+            tags={experiment.tags}
+            icon={<experiment.icon />}
+            //imageUrl={experiment.imageUrl}
+            href={`/experiments/${experiment.id}`}
             titleAs={"h2"}
           />
         ))}
       </CardGrid>
     </>
-  )
+  );
 }

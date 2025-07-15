@@ -1,8 +1,8 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Code2, Palette, Zap } from "lucide-react";
 import Link from "next/link";
-import { mockLogPosts } from "@/components/sections/log/mocks";
-import { mockProjects } from "@/components/sections/lab/mocks";
+import { mockArticles } from "@/components/sections/log/mocks";
+import { mockExperiments } from "@/components/sections/lab/mocks";
 import { PreviewCard } from "@/components/shared/PreviewCard";
 
 import { getTranslations, getLocale } from "next-intl/server";
@@ -29,7 +29,7 @@ export default async function Home() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href={`/${locale}/log`}>
                 <Button size="lg" className="font-medium cursor-pointer">
-                  {t("hero.cta.entries")}
+                  {t("hero.cta.articles")}
                 </Button>
               </Link>
               <Link href={`/${locale}/lab`}>
@@ -63,15 +63,15 @@ export default async function Home() {
           </p>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-            {mockLogPosts.slice(0, 3).map((post) => (
+            {mockArticles.slice(0, 3).map((article) => (
               <PreviewCard
-                key={post.id}
-                title={post.title}
-                description={post.description}
-                date={post.date}
-                readTime={post.readTime}
-                tags={post.tags}
-                href={`/${locale}/log/${post.id}-${post.title
+                key={article.id}
+                title={article.title}
+                description={article.description}
+                date={article.date}
+                readTime={article.readTime}
+                tags={article.tags}
+                href={`/${locale}/log/${article.id}-${article.title
                   .toLowerCase()
                   .replace(/\s+/g, "-")}`}
               />
@@ -105,17 +105,17 @@ export default async function Home() {
           </p>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-            {mockProjects.slice(0, 3).map((project, i) => {
+            {mockExperiments.slice(0, 3).map((experiment, i) => {
               const Icon = [Palette, Zap, Code2][i];
 
               return (
                 <PreviewCard
-                  key={project.id}
-                  title={project.title}
-                  description={project.description}
-                  tags={project.tags}
+                  key={experiment.id}
+                  title={experiment.title}
+                  description={experiment.description}
+                  tags={experiment.tags}
                   icon={<Icon />}
-                  href={`/${locale}/lab/${project.id}-${project.title
+                  href={`/${locale}/lab/${experiment.id}-${experiment.title
                     .toLowerCase()
                     .replace(/\s+/g, "-")}`}
                 />

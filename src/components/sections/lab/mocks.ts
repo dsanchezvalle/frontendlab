@@ -1,11 +1,21 @@
-import { Zap, Code2, BookOpenCheck, Accessibility, Grid3X3, Wand2, LayoutTemplate, Video } from "lucide-react";
-import type { Project } from "@/types";
+import {
+  Zap,
+  Code2,
+  BookOpenCheck,
+  Accessibility,
+  Grid3X3,
+  Wand2,
+  LayoutTemplate,
+  Video,
+} from "lucide-react";
+import type { LabExperiment } from "@/types";
 
-export const mockProjects: Project[] = [
+export const mockExperiments: LabExperiment[] = [
   {
     id: "1",
     title: "Interactive CSS Animations",
-    description: "A collection of smooth CSS animations and transitions you can use in your projects. Includes hover effects, page transitions, and micro-interactions.",
+    description:
+      "A collection of smooth CSS animations and transitions you can use in your projects. Includes hover effects, page transitions, and micro-interactions.",
     icon: Wand2,
     tags: ["CSS", "Animation"],
   },
@@ -20,7 +30,7 @@ export const mockProjects: Project[] = [
   {
     id: "3",
     title: "Component Library Starter",
-    description: 
+    description:
       "A minimal setup for building your own component library with TypeScript and Storybook. Includes configuration for testing and documentation.",
     icon: BookOpenCheck,
     tags: ["TypeScript", "Storybook"],
@@ -30,7 +40,7 @@ export const mockProjects: Project[] = [
     title: "CSS Grid Playground",
     description:
       "Interactive examples of CSS Grid layouts with editable code. Experiment with different grid properties and see the results in real-time.",
-      icon: Grid3X3,
+    icon: Grid3X3,
     tags: ["CSS", "Layout"],
   },
   {

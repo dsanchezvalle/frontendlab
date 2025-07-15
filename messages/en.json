@@ -10,7 +10,7 @@
       "highlight": "Frontend.",
       "description": "A space for developers to explore the latest frontend technologies, share knowledge, and experiment with frontend concepts and tools.",
       "cta": {
-        "entries": "Read Entries",
+        "articles": "Read Articles",
         "experiments": "Explore Experiments"
       }
     },
