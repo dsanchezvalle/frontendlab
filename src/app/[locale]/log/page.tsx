@@ -1,4 +1,4 @@
-import { LogIndex } from '@/components/sections/log/LogIndex';
+import { LogIndex } from "@/components/sections/log/LogIndex";
 
 // export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
 //   const t = await getTranslations({ locale, namespace: 'ArticlesPage' });
@@ -9,8 +9,7 @@ import { LogIndex } from '@/components/sections/log/LogIndex';
 //   };
 // }
 
-export default async function ArticlesPage() {
-
+export default async function LogPage() {
   return (
     <div className="min-h-screen">
       <LogIndex />

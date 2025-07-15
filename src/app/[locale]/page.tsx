@@ -1,8 +1,8 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Code2, Palette, Zap } from "lucide-react";
 import Link from "next/link";
-import { mockLogPosts } from "@/components/sections/log/mocks";
-import { mockProjects } from "@/components/sections/lab/mocks";
+import { mockArticles } from "@/components/sections/log/mocks";
+import { mockExperiments } from "@/components/sections/lab/mocks";
 import { PreviewCard } from "@/components/shared/PreviewCard";
 
 import { getTranslations, getLocale } from "next-intl/server";
@@ -18,7 +18,7 @@ export default async function Home() {
         <div className="container mx-auto px-4 text-center">
           <div className="max-w-4xl mx-auto space-y-6">
             <h1 className="text-4xl md:text-6xl font-bold tracking-tight">
-              {t("hero.title")}
+              {t("hero.title")}{" "}
               <span className="text-primary font-mono">
                 {t("hero.highlight")}
               </span>
@@ -29,7 +29,7 @@ export default async function Home() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href={`/${locale}/log`}>
                 <Button size="lg" className="font-medium cursor-pointer">
-                  {t("hero.cta.entries")}
+                  {t("hero.cta.articles")}
                 </Button>
               </Link>
               <Link href={`/${locale}/lab`}>
@@ -50,28 +50,28 @@ export default async function Home() {
       <section id="articles" className="py-12">
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between mb-3 max-w-6xl mx-auto">
-            <h2 className="text-3xl font-bold">{t("articles.title")}</h2>
+            <h2 className="text-3xl font-bold">{t("log.title")}</h2>
             <Link href={`/${locale}/log`} className="flex items-center gap-2">
               <Button variant="outline" className="group cursor-pointer">
-                {t("articles.viewAll")}
+                {t("log.viewAll")}
                 <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
               </Button>
             </Link>
           </div>
           <p className="text-muted-foreground font-serif mb-8 max-w-6xl mx-auto">
-            {t("articles.description")}
+            {t("log.description")}
           </p>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-            {mockLogPosts.slice(0, 3).map((post) => (
+            {mockArticles.slice(0, 3).map((article) => (
               <PreviewCard
-                key={post.id}
-                title={post.title}
-                description={post.description}
-                date={post.date}
-                readTime={post.readTime}
-                tags={post.tags}
-                href={`/${locale}/log/${post.id}-${post.title
+                key={article.id}
+                title={article.title}
+                description={article.description}
+                date={article.date}
+                readTime={article.readTime}
+                tags={article.tags}
+                href={`/${locale}/log/${article.id}-${article.title
                   .toLowerCase()
                   .replace(/\s+/g, "-")}`}
               />
@@ -80,7 +80,7 @@ export default async function Home() {
           <div className="mt-8 text-left max-w-6xl mx-auto">
             <Link href={`/${locale}/log`} className="sm:hidden">
               <Button variant="outline" className="group cursor-pointer">
-                {t("articles.viewAll")}
+                {t("log.viewAll")}
                 <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
               </Button>
             </Link>
@@ -92,30 +92,30 @@ export default async function Home() {
       <section id="playground" className="py-16">
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between mb-3 max-w-6xl mx-auto">
-            <h2 className="text-3xl font-bold">{t("playground.title")}</h2>
+            <h2 className="text-3xl font-bold">{t("lab.title")}</h2>
             <Link href={`/${locale}/lab`} className="flex items-center gap-2">
               <Button variant="outline" className="group cursor-pointer">
-                {t("playground.viewAll")}
+                {t("lab.viewAll")}
                 <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
               </Button>
             </Link>
           </div>
           <p className="text-muted-foreground font-serif mb-8 max-w-6xl mx-auto">
-            {t("playground.description")}
+            {t("lab.description")}
           </p>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-            {mockProjects.slice(0, 3).map((project, i) => {
+            {mockExperiments.slice(0, 3).map((experiment, i) => {
               const Icon = [Palette, Zap, Code2][i];
 
               return (
                 <PreviewCard
-                  key={project.id}
-                  title={project.title}
-                  description={project.description}
-                  tags={project.tags}
+                  key={experiment.id}
+                  title={experiment.title}
+                  description={experiment.description}
+                  tags={experiment.tags}
                   icon={<Icon />}
-                  href={`/${locale}/lab/${project.id}-${project.title
+                  href={`/${locale}/lab/${experiment.id}-${experiment.title
                     .toLowerCase()
                     .replace(/\s+/g, "-")}`}
                 />
@@ -125,7 +125,7 @@ export default async function Home() {
           <div className="mt-8 text-left max-w-6xl mx-auto">
             <Link href={`/${locale}/lab`} className="sm:hidden">
               <Button variant="outline" className="group cursor-pointer">
-                {t("playground.viewAll")}
+                {t("lab.viewAll")}
                 <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
               </Button>
             </Link>
