@@ -3,7 +3,7 @@ import "@/models/Author";
 import "@/models/Tag";
 import Article from "@/models/Article";
 
-export async function GET(req: Request) {
+export async function GET() {
   await connectToDatabase();
 
   try {
