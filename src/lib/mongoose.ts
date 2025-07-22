@@ -1,21 +1,30 @@
 import mongoose from "mongoose";
 
-const isProduction = process.env.NODE_ENV === "production";
+const MONGODB_URI =
+  process.env.NODE_ENV === "production"
+    ? process.env.MONGODB_URI
+    : process.env.MONGODB_URI_DEV;
 
-const uri = isProduction
-  ? process.env.MONGODB_URI || ""
-  : process.env.MONGODB_URI_DEV || "";
+if (!MONGODB_URI) {
+  throw new Error("Missing MongoDB URI");
+}
+
+// Global cache (only works in dev mode)
+let cached = (global as any).mongoose;
+
+if (!cached) {
+  cached = (global as any).mongoose = { conn: null, promise: null };
+}
 
 export async function connectToDatabase() {
-  if (mongoose.connection.readyState >= 1) return;
+  if (cached.conn) return cached.conn;
 
-  try {
-    await mongoose.connect(uri);
-    console.log(
-      `✅ Connected to MongoDB Atlas (${isProduction ? "PROD" : "DEV"})`
-    );
-  } catch (err) {
-    console.error("❌ MongoDB connection error:", err);
-    throw err;
+  if (!cached.promise) {
+    cached.promise = mongoose.connect(MONGODB_URI!, {
+      bufferCommands: false,
+    });
   }
+
+  cached.conn = await cached.promise;
+  return cached.conn;
 }
