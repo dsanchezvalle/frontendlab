@@ -139,7 +139,6 @@ async function seed() {
         },
         author: authors[0]._id,
         tags: [tags[0]._id],
-        publishedAt: new Date(),
       },
       {
         slug: {
@@ -164,7 +163,6 @@ async function seed() {
         },
         author: authors[1]._id,
         tags: [tags[1]._id],
-        publishedAt: new Date(),
       },
       {
         slug: {
@@ -189,7 +187,6 @@ async function seed() {
         },
         author: authors[0]._id,
         tags: [tags[0]._id],
-        publishedAt: new Date(),
       },
       {
         slug: { en: "nextjs-mdx", es: "nextjs-mdx", pt: "nextjs-mdx" },
@@ -210,7 +207,6 @@ async function seed() {
         },
         author: authors[2]._id,
         tags: [tags[0]._id],
-        publishedAt: new Date(),
       },
     ]);
 
