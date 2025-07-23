@@ -1,4 +1,4 @@
-import { Schema, model, models, Types } from "mongoose";
+import { Schema, model, models } from "mongoose";
 
 const ArticleSchema = new Schema(
   {
@@ -30,8 +30,8 @@ const ArticleSchema = new Schema(
         pt: { type: String },
       },
     },
-    author: { type: Types.ObjectId, ref: "Author", required: true },
-    tags: [{ type: Types.ObjectId, ref: "Tag", required: true }],
+    author: { type: Schema.Types.ObjectId, ref: "Author", required: true },
+    tags: [{ type: Schema.Types.ObjectId, ref: "Tag", required: true }],
     publishedAt: { type: Date, default: null }, // null if not published
   },
   { timestamps: true }
