@@ -1,13 +1,15 @@
 import mongoose from "mongoose";
 
+// Declare the mongooseCache type
+interface MongooseCache {
+  conn: mongoose.Connection | null;
+  promise: Promise<typeof mongoose> | null;
+}
+
+// Extend the Global interface without using namespace
 declare global {
-  // Rename the global cache property to avoid conflict with imported mongoose
-  let mongooseCache:
-    | {
-        conn: mongoose.Connection | null;
-        promise: Promise<typeof mongoose> | null;
-      }
-    | undefined;
+  // eslint-disable-next-line no-var
+  var mongooseCache: MongooseCache | undefined;
 }
 
 const MONGODB_URI =
@@ -25,6 +27,10 @@ export async function connectToDatabase() {
   }
 
   const cached = global.mongooseCache;
+
+  if (!cached) {
+    throw new Error("mongooseCache is undefined");
+  }
 
   if (cached.conn) {
     return cached.conn;
