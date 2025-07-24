@@ -10,9 +10,8 @@ export async function GET(
 ): Promise<NextResponse> {
   const { slug } = await params;
 
-  // Extract query parameters from the URL
-  const { searchParams } = new URL(request.url);
-  const lang = searchParams.get("lang") || "en";
+  // Use NextRequest's built-in URL parser
+  const lang = request.nextUrl.searchParams.get("lang") || "en";
 
   // Connect to MongoDB
   await connectToDatabase();
