@@ -1,57 +1,57 @@
 "use client";
 
-import { useCallback, useState } from "react";
-import { createSlug } from "@/lib/slug";
+import { useState, useEffect } from "react";
+import { useParams } from "next/navigation";
 import { StickyTopSearchBar } from "@/components/shared/StickyTopSearchBar";
 import { CardGrid } from "@/components/shared/CardGrid";
-import { mockArticles } from "./mocks";
-import type { LogArticle } from "@/types";
-import { useSearch, useDebouncedValue } from "@/hooks";
 import { PreviewCard } from "@/components/shared/PreviewCard";
-// import { useDebouncedFetch } from "@/hooks/useDebouncedFetch" // Ready to swap later
+import { useArticles } from "@/hooks/useArticles";
+import { searchArticles } from "@/utils/searchArticles";
+import { getLocalizedContent, formatLocalizedDate } from "@/utils/localization";
+import type { Locale, IArticle } from "@/lib/db/types/article";
 
 export function LogIndex() {
   const [searchQuery, setSearchQuery] = useState("");
+  const { locale } = useParams();
+  const currentLocale = locale as Locale;
 
-  const debouncedSearchQuery = useDebouncedValue(searchQuery, 300);
+  const { articles, isLoading } = useArticles(currentLocale);
+  const [filteredArticles, setFilteredArticles] = useState<IArticle[]>([]);
 
-  const filterFn = useCallback(
-    (article: LogArticle, query: string) =>
-      article.title.toLowerCase().includes(query.toLowerCase()) ||
-      article.description.toLowerCase().includes(query.toLowerCase()) ||
-      article.tags?.some((tag: string) =>
-        tag.toLowerCase().includes(query.toLowerCase())
-      ),
-    []
-  );
-  // Using mock data for now, replace with actual data fetching logic later
-  const { results: filteredArticles, isLoading } = useSearch({
-    data: mockArticles,
-    query: debouncedSearchQuery,
-    filterFn: filterFn,
-  });
-
-  // When using API:
-  // const { results: filteredArticles, isLoading } = useDebouncedFetch(searchQuery, '/api/articles')
+  useEffect(() => {
+    setFilteredArticles(searchArticles(articles, searchQuery, currentLocale));
+  }, [searchQuery, articles, currentLocale]);
 
   return (
     <>
-      {/* Sticky Search Header */}
       <StickyTopSearchBar title="The Log" onSearchChange={setSearchQuery} />
-
-      {/* Log Articles Grid */}
       <CardGrid isLoading={isLoading}>
         {filteredArticles.map((article) => (
           <PreviewCard
-            key={article.id}
-            title={article.title}
-            description={article.description}
-            tags={article.tags}
-            date={article.date}
-            readTime={article.readTime}
-            href={`/log/${createSlug(article.id, article.title)}`}
-            titleAs={"h2"}
-            // imageUrl={article.imageUrl} // optional
+            key={article.id.toString()}
+            title={getLocalizedContent(article.title, currentLocale)}
+            description={getLocalizedContent(
+              article.description,
+              currentLocale
+            )}
+            href={`/${currentLocale}/log/${getLocalizedContent(
+              article.slug,
+              currentLocale
+            )}`}
+            titleAs="h2"
+            //locale={currentLocale}
+            date={
+              formatLocalizedDate(
+                //new Date("December 17, 1995 03:24:00") ||
+                article.publishedAt || article.createdAt || undefined,
+                currentLocale
+              )
+              //new Date("December 17, 1995 03:24:00")
+              //article.publishedAt ? new Date(article.publishedAt) : undefined
+            }
+            tags={article.tags?.map((tag) =>
+              getLocalizedContent(tag.label, currentLocale)
+            )}
           />
         ))}
       </CardGrid>
