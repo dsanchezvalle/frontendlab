@@ -1,5 +1,10 @@
 import mongoose from "mongoose";
 
+// NOTE:
+// Cached MongoDB connection for Next.js App Router.
+// Prevents creating a new connection on every server invocation,
+// especially during development with Hot Reload.
+
 // Declare the mongooseCache type
 interface MongooseCache {
   conn: mongoose.Connection | null;
@@ -10,15 +15,6 @@ interface MongooseCache {
 declare global {
   // eslint-disable-next-line no-var
   var mongooseCache: MongooseCache | undefined;
-}
-
-const MONGODB_URI =
-  process.env.NODE_ENV === "production"
-    ? process.env.MONGODB_URI
-    : process.env.MONGODB_URI_DEV;
-
-if (!MONGODB_URI) {
-  throw new Error("Missing MongoDB URI");
 }
 
 export async function connectToDatabase() {
@@ -34,6 +30,15 @@ export async function connectToDatabase() {
 
   if (cached.conn) {
     return cached.conn;
+  }
+
+  const MONGODB_URI =
+    process.env.NODE_ENV === "production"
+      ? process.env.MONGODB_URI
+      : process.env.MONGODB_URI_DEV;
+
+  if (!MONGODB_URI) {
+    throw new Error("Missing MongoDB URI");
   }
 
   if (!cached.promise) {
