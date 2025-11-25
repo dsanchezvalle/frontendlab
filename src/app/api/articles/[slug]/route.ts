@@ -1,7 +1,7 @@
-import { connectToDatabase } from "@/lib/mongoose";
-import "@/models/Author";
-import "@/models/Tag";
-import Article from "@/models/Article";
+import { connectToDatabase } from "@/lib/db/mongoose";
+import "@/lib/models/Author";
+import "@/lib/models/Tag";
+import Article from "@/lib/models/Article";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(
