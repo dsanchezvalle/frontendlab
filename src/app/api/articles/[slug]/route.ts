@@ -1,7 +1,7 @@
-import { connectToDatabase } from "@/lib/mongoose";
-import "@/models/Author";
-import "@/models/Tag";
-import Article from "@/models/Article";
+import { connectToDatabase } from "@/lib/db/mongoose";
+import "@/lib/models/Author";
+import "@/lib/models/Tag";
+import Article from "@/lib/models/Article";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(
@@ -10,9 +10,8 @@ export async function GET(
 ): Promise<NextResponse> {
   const { slug } = await params;
 
-  // Extract query parameters from the URL
-  const { searchParams } = new URL(request.url);
-  const lang = searchParams.get("lang") || "en";
+  // Use NextRequest's built-in URL parser
+  const lang = request.nextUrl.searchParams.get("lang") || "en";
 
   // Connect to MongoDB
   await connectToDatabase();

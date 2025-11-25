@@ -1,17 +1,15 @@
 import mongoose from "mongoose";
 import dotenv from "dotenv";
-import Author from "@/models/Author";
-import Tag from "@/models/Tag";
-import Article from "@/models/Article";
+import Author from "@/lib/models/Author";
+import Tag from "@/lib/models/Tag";
+import Article from "@/lib/models/Article";
+import { connectToDatabase } from "@/lib/db/mongoose";
 
 // Load environment variables from .env.local
 dotenv.config({ path: ".env.local" });
 
 async function seed() {
   const isProduction = process.env.NODE_ENV === "production";
-  const mongoUri = isProduction
-    ? process.env.MONGODB_URI!
-    : process.env.MONGODB_URI_DEV!;
 
   // Prevent accidental seeding on production
   if (isProduction) {
@@ -23,7 +21,7 @@ async function seed() {
 
   try {
     // Connect to the appropriate MongoDB database
-    await mongoose.connect(mongoUri);
+    await connectToDatabase();
     console.log(`✅ Connected to MongoDB (${isProduction ? "PROD" : "DEV"})`);
 
     // Clear existing data in collections during development

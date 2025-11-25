@@ -1,6 +1,6 @@
-import type { LogArticle } from "@/types";
+import type { LogArticleCard } from "@/types";
 
-export const mockArticles: LogArticle[] = [
+export const mockArticles: LogArticleCard[] = [
   {
     id: "1",
     title: "Building Accessible React Components",
