@@ -1,4 +1,4 @@
-import { LogIndex } from "@/components/sections/log/LogIndex";
+import { LogIndex } from "@/components/sections/log";
 
 // export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
 //   const t = await getTranslations({ locale, namespace: 'ArticlesPage' });

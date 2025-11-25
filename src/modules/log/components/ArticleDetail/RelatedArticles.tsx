@@ -40,3 +40,5 @@ export default function RelatedArticles({ articles }: RelatedArticlesProps) {
     </div>
   )
 }
+
+
