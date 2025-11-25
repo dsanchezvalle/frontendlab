@@ -1,15 +1,16 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 import { connectToDatabase } from "@/lib/db/mongoose";
 import "@/lib/models/Author";
 import "@/lib/models/Tag";
 import Article from "@/lib/models/Article";
 
-export async function GET(request: NextRequest) {
+export async function GET() {
   await connectToDatabase();
 
   try {
-    const { searchParams } = new URL(request.url);
-    const locale = searchParams.get("locale"); // "en", "es", "pt", etc. or null
+    // TODO: In the future, support locale filtering here
+    // const { searchParams } = new URL(request.url);
+    // const _locale = searchParams.get("locale"); // "en", "es", "pt", etc. or null
 
     // For now, we don't filter by locale yet.
     // But we DO read it so the contract with useArticles is explicit and future-proof.
