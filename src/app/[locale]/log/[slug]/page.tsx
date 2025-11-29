@@ -1,49 +1,83 @@
-'use client'
+import { notFound } from "next/navigation";
+import type { Locale } from "@/lib/db/types/article";
+import { getArticleBySlug } from "@/modules/log/services/articles";
+import {
+  ArticleHeader,
+  ArticleBody,
+  AuthorCard,
+  RelatedArticles,
+  Comments,
+  mockRelatedArticles,
+  mockComments,
+} from "@/components/sections/log";
+import BackButton from "@/components/shared/BackButton";
+import { getLocalizedContent } from "@/utils/localization";
+import type { LogArticle } from "@/modules/log/types";
 
-import ArticleHeader from "@/components/sections/log/ArticleDetail/ArticleHeader"
-import ArticleBody from "@/components/sections/log/ArticleDetail/ArticleBody"
-import AuthorCard from "@/components/sections/log/ArticleDetail/AuthorCard"
-import RelatedArticles from "@/components/sections/log/ArticleDetail/RelatedArticles"
-import Comments from "@/components/sections/log/ArticleDetail/Comments"
-import { mockArticle, mockAuthor, mockRelatedArticles, mockComments, mockHandlers, } from "@/components/sections/log/ArticleDetail/mocks"
-import BackButton from "@/components/shared/BackButton"
+type PageParams = {
+  locale: Locale;
+  slug: string;
+};
 
-export default function ArticleDetailPage() {
+export default async function ArticleDetailPage({
+  params,
+}: {
+  params: Promise<PageParams>;
+}) {
+  // Next's generated types expect params to be a Promise, so we await it here
+  const { locale, slug } = await params;
+
+  const article = await getArticleBySlug(locale, slug);
+
+  if (!article) {
+    notFound();
+  }
+
+  const logArticle = article as LogArticle;
+
+  const articleTitle = getLocalizedContent(logArticle.title, locale);
+  const articleDate = logArticle.date;
+  const articleAuthor = logArticle.author.name;
+  const articleTags = logArticle.tags.map((tag) =>
+    getLocalizedContent(tag.label, locale)
+  );
+  const readingTime = logArticle.readTime;
 
   return (
-      <div className="container mx-auto px-4 py-8 max-w-5xl">
-        {/* Back Button */}
-        <div className="mb-8">
-          <BackButton href="/log" label="Back to The Log"   />
-        </div>
-
-        {/* Article Header */}
-        <ArticleHeader
-          title={mockArticle.title}
-          tags={mockArticle.tags}
-          date={mockArticle.date}
-          author={mockArticle.author}
-          readingTime={mockArticle.readingTime}
-        />
-
-        {/* Article Content */}
-        <ArticleBody/>
-
-        {/* Author Bio */}
-        <AuthorCard
-          initials={mockAuthor.initials}
-          name={mockAuthor.name}
-          bio={mockAuthor.bio}
-          onFollow={mockHandlers.onFollow}
-          onViewAll={mockHandlers.onViewAll}
-        />
-
-        {/* Related Articles */}
-        <RelatedArticles articles={mockRelatedArticles} />
-
-        {/* Comments Section */}
-        <Comments comments={mockComments} onSubmit={mockHandlers.onCommentSubmit} />
-
+    <div className="container mx-auto px-4 py-8 max-w-5xl">
+      {/* Back Button */}
+      <div className="mb-8">
+        <BackButton href={`/${locale}/log`} label="Back to The Log" />
       </div>
-  )
+
+      {/* Article Header */}
+      <ArticleHeader
+        title={articleTitle}
+        tags={articleTags}
+        date={articleDate}
+        author={articleAuthor}
+        readingTime={readingTime}
+      />
+
+      {/* Article Content */}
+      <ArticleBody />
+
+      {/* Author Bio */}
+      <AuthorCard
+        initials={logArticle.author.name
+          .split(" ")
+          .map((n) => n[0])
+          .join("")
+          .toUpperCase()}
+        name={logArticle.author.name}
+        bio={getLocalizedContent(logArticle.author.bio, locale)}
+      />
+
+      {/* Related Articles (still using mocks as preview data) */}
+      <RelatedArticles articles={mockRelatedArticles} />
+
+      {/* Comments (no handler from server, just preview data) */}
+      <Comments comments={mockComments} />
+    </div>
+  );
 }

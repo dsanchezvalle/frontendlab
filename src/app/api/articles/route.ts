@@ -1,27 +1,15 @@
 import { NextResponse } from "next/server";
-import { connectToDatabase } from "@/lib/db/mongoose";
-import "@/lib/models/Author";
-import "@/lib/models/Tag";
-import Article from "@/lib/models/Article";
+import type { Locale } from "@/lib/db/types/article";
+import { listPublishedArticles } from "@/modules/log/services/articles";
 
-export async function GET() {
-  await connectToDatabase();
-
+export async function GET(req: Request) {
   try {
-    // TODO: In the future, support locale filtering here
-    // const { searchParams } = new URL(request.url);
-    // const _locale = searchParams.get("locale"); // "en", "es", "pt", etc. or null
+    const url = new URL(req.url);
+    const locale = (url.searchParams.get("locale") ?? "en") as Locale;
 
-    // For now, we don't filter by locale yet.
-    // But we DO read it so the contract with useArticles is explicit and future-proof.
+    const articles = await listPublishedArticles(locale);
 
-    const articles = await Article.find()
-      .sort({
-        createdAt: -1,
-      })
-      .populate("author")
-      .populate("tags");
-
+    // Maintain backward compatibility: return articles directly (not wrapped in { data: ... })
     return NextResponse.json(articles);
   } catch (error) {
     console.error("Error fetching articles:", error);
