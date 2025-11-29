@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Code2, Palette, Zap } from "lucide-react";
 import Link from "next/link";
-import { mockArticles } from "@/components/sections/log/mocks";
+import { mockArticles } from "@/components/sections/log";
 import { mockExperiments } from "@/components/sections/lab/mocks";
 import { PreviewCard } from "@/components/shared/PreviewCard";
 
