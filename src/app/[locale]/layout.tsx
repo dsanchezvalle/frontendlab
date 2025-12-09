@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import LayoutProps from "next";
+import type { ReactNode } from "react";
 import { DM_Sans, Lora, JetBrains_Mono } from "next/font/google";
 import { ThemeProviders } from "@/providers";
 import "../../styles/globals.css";
@@ -33,10 +33,15 @@ export const metadata: Metadata = {
     "A space to experiment, showcase projects and share insights on frontend development",
 };
 
+type LocaleLayoutProps = {
+  children: ReactNode;
+  params: Promise<{ locale: string }>;
+};
+
 export default async function RootLayout({
   children,
   params,
-}: LayoutProps<"/[locale]">) {
+}: LocaleLayoutProps) {
   const { locale } = await params;
   if (!hasLocale(routing.locales, locale)) {
     notFound();

@@ -1,3 +1,7 @@
+// NOTE: This service module sits at the DB → DTO boundary for The Log.
+// It queries Mongoose models and returns LogArticle DTOs to the rest
+// of the application. DB-layer types (IArticle, ILocalizedField) should
+// remain confined to this file and the mappers.
 import { Types } from "mongoose";
 import { connectToDatabase } from "@/lib/db/mongoose";
 import Article from "@/lib/models/Article";

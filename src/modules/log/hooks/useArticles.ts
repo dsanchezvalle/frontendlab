@@ -1,8 +1,13 @@
+"use client";
+
 import { useState, useEffect } from "react";
-import type { IArticle, Locale } from "@/lib/db/types/article";
+import { routing } from "@/i18n/routing";
+import type { LogArticle } from "@/modules/log/types";
+
+type Locale = (typeof routing)["locales"][number];
 
 export function useArticles(locale: Locale) {
-  const [articles, setArticles] = useState<IArticle[]>([]);
+  const [articles, setArticles] = useState<LogArticle[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
 
@@ -11,10 +16,9 @@ export function useArticles(locale: Locale) {
       setIsLoading(true);
       setError(null);
       try {
-        // Locale is expected to be handled in the future here with const res = await fetch(`/api/articles?locale=${locale}`);
-        const res = await fetch("/api/articles");
+        const res = await fetch(`/api/articles?locale=${locale}`);
         if (!res.ok) throw new Error(res.statusText);
-        const data = await res.json();
+        const data: LogArticle[] = await res.json();
         setArticles(data);
       } catch (err) {
         setError(
@@ -30,4 +34,3 @@ export function useArticles(locale: Locale) {
 
   return { articles, isLoading, error };
 }
-

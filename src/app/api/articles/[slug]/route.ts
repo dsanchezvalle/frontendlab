@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
-import type { Locale } from "@/lib/db/types/article";
+import { routing } from "@/i18n/routing";
 import { getArticleBySlug } from "@/modules/log/services/articles";
+
+type Locale = (typeof routing)["locales"][number];
 
 export async function GET(
   request: NextRequest,

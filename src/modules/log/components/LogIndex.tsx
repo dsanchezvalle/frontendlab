@@ -6,12 +6,14 @@ import { StickyTopSearchBar } from "@/components/shared/StickyTopSearchBar";
 import { CardGrid } from "@/components/shared/CardGrid";
 import { PreviewCard } from "@/components/shared/PreviewCard";
 
-import { useArticles } from "@/hooks/useArticles";
-import { searchArticles } from "@/utils/searchArticles";
+import { useArticles } from "@/modules/log/hooks/useArticles";
+import { searchArticles } from "@/modules/log/utils/searchArticles";
 import { getLocalizedContent, formatLocalizedDate } from "@/utils/localization";
 
-import type { Locale, IArticle } from "@/lib/db/types/article";
+import { routing } from "@/i18n/routing";
 import type { LogArticle } from "@/modules/log/types";
+
+type Locale = (typeof routing)["locales"][number];
 
 export function LogIndex() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -24,14 +26,7 @@ export function LogIndex() {
   const [filteredArticles, setFilteredArticles] = useState<LogArticle[]>([]);
 
   useEffect(() => {
-    // searchArticles is still typed for IArticle[]; at runtime we get LogArticle DTOs.
-    // Cast through unknown to satisfy both TS and lint.
-    const next = searchArticles(
-      articles as IArticle[],
-      searchQuery,
-      currentLocale
-    ) as unknown as LogArticle[];
-
+    const next = searchArticles(articles, searchQuery, currentLocale);
     setFilteredArticles(next);
   }, [searchQuery, articles, currentLocale]);
 

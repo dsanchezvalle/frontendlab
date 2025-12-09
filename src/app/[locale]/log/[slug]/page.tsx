@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import type { Locale } from "@/lib/db/types/article";
+import { routing } from "@/i18n/routing";
 import { getArticleBySlug } from "@/modules/log/services/articles";
 import {
   ArticleHeader,
@@ -13,6 +13,8 @@ import {
 import BackButton from "@/components/shared/BackButton";
 import { getLocalizedContent } from "@/utils/localization";
 import type { LogArticle } from "@/modules/log/types";
+
+type Locale = (typeof routing)["locales"][number];
 
 type PageParams = {
   locale: Locale;
@@ -33,7 +35,7 @@ export default async function ArticleDetailPage({
     notFound();
   }
 
-  const logArticle = article as LogArticle;
+  const logArticle: LogArticle = article;
 
   const articleTitle = getLocalizedContent(logArticle.title, locale);
   const articleDate = logArticle.date;

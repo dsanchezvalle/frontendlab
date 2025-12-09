@@ -1,3 +1,7 @@
+// NOTE: This file defines the DB → DTO mapping for The Log feature.
+// It is one of the only places in the Log module where DB-layer types
+// like IArticle and ILocalizedField are allowed; the rest of the module
+// should work with LogArticle DTOs instead.
 import { Types } from "mongoose";
 import type { IArticle, ILocalizedField, Locale } from "@/lib/db/types/article";
 import type {
