@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import LayoutProps from "next";
 import { DM_Sans, Lora, JetBrains_Mono } from "next/font/google";
 import { ThemeProviders } from "@/providers";
 import "../../styles/globals.css";
@@ -35,10 +36,7 @@ export const metadata: Metadata = {
 export default async function RootLayout({
   children,
   params,
-}: Readonly<{
-  children: React.ReactNode;
-  params: { locale: string };
-}>) {
+}: LayoutProps<"/[locale]">) {
   const { locale } = await params;
   if (!hasLocale(routing.locales, locale)) {
     notFound();
