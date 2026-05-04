@@ -113,6 +113,10 @@ Bidirectional structural check between `CLAUDE.md` / `AGENTS.md` and
   - the branching model in CLAUDE.md matches workflow triggers.
 Output: PASS / FAIL with diffable details.
 
+The `check-docs-sync.yml` workflow runs the same structural check in CI
+on every push, so a missing reference fails the build rather than going
+unnoticed.
+
 ## Escalation rules
 
 - Any change touching authentication, billing, data migration, public API
@@ -152,6 +156,14 @@ Notes:
   signal so label-only consumers stay correct.
 - All label mutations in `project-status.yml` run **without** `|| true` —
   if a label is missing or misnamed, the workflow fails. Do not silence it.
+
+## Release PR validation
+
+Release PRs from `develop` to `main` are gated by
+`validate-release-pr.yml`, which rejects closing keywords (`Closes #N`,
+`Fixes #N`, etc.) in the PR body. Issues are closed when the feature PR
+merges to `develop`; including closing keywords on the release PR would
+re-close already-closed issues from the wrong commit.
 
 ## Invariants
 
