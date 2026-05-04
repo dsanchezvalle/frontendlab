@@ -91,44 +91,44 @@ jobs:
             # then insert ENTRIES immediately after the blank line that follows it,
             # preserving the existing entries below.
             python3 - <<PY
-import re, os, pathlib
-path = pathlib.Path("CHANGELOG.md")
-text = path.read_text()
-today = os.environ["TODAY"]
-new_entries = os.environ["ENTRIES"].rstrip("\n").splitlines()
-heading = f"## {today}"
-lines = text.splitlines()
-try:
-    idx = next(i for i, ln in enumerate(lines) if ln.strip() == heading)
-except StopIteration:
-    raise SystemExit("Expected today's heading not found; aborting.")
-# Find the start of the existing entry block (skip blank line(s) right after heading).
-i = idx + 1
-while i < len(lines) and lines[i].strip() == "":
-    i += 1
-# Collect existing entries for today (consecutive lines starting with "- ").
-start = i
-while i < len(lines) and lines[i].startswith("- "):
-    i += 1
-existing = lines[start:i]
-# Merge: existing + new, then re-sort with feat / fix / rest.
-merged = existing + new_entries
-def bucket(line):
-    body = line[2:]  # strip "- "
-    if body.startswith("feat"): return 0
-    if body.startswith("fix"):  return 1
-    return 2
-# Stable de-dup while preserving content; sort within buckets.
-seen = set()
-deduped = []
-for ln in merged:
-    if ln not in seen:
-        seen.add(ln)
-        deduped.append(ln)
-deduped.sort(key=lambda ln: (bucket(ln), ln.lower()))
-new_lines = lines[:start] + deduped + lines[i:]
-path.write_text("\n".join(new_lines) + ("\n" if text.endswith("\n") else ""))
-PY
+          import re, os, pathlib
+          path = pathlib.Path("CHANGELOG.md")
+          text = path.read_text()
+          today = os.environ["TODAY"]
+          new_entries = os.environ["ENTRIES"].rstrip("\n").splitlines()
+          heading = f"## {today}"
+          lines = text.splitlines()
+          try:
+              idx = next(i for i, ln in enumerate(lines) if ln.strip() == heading)
+          except StopIteration:
+              raise SystemExit("Expected today's heading not found; aborting.")
+          # Find the start of the existing entry block (skip blank line(s) right after heading).
+          i = idx + 1
+          while i < len(lines) and lines[i].strip() == "":
+              i += 1
+          # Collect existing entries for today (consecutive lines starting with "- ").
+          start = i
+          while i < len(lines) and lines[i].startswith("- "):
+              i += 1
+          existing = lines[start:i]
+          # Merge: existing + new, then re-sort with feat / fix / rest.
+          merged = existing + new_entries
+          def bucket(line):
+              body = line[2:]  # strip "- "
+              if body.startswith("feat"): return 0
+              if body.startswith("fix"):  return 1
+              return 2
+          # Stable de-dup while preserving content; sort within buckets.
+          seen = set()
+          deduped = []
+          for ln in merged:
+              if ln not in seen:
+                  seen.add(ln)
+                  deduped.append(ln)
+          deduped.sort(key=lambda ln: (bucket(ln), ln.lower()))
+          new_lines = lines[:start] + deduped + lines[i:]
+          path.write_text("\n".join(new_lines) + ("\n" if text.endswith("\n") else ""))
+          PY
           else
             # Prepend a brand-new dated block above whatever is currently on top.
             {
