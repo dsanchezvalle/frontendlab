@@ -1,0 +1,62 @@
+# CORE: agnostic
+# Opens a PR automatically when a feature/fix/etc. branch is pushed.
+# Extracts the issue number from the branch name (e.g. feat/123-add-foo -> #123).
+name: Auto PR
+
+on:
+  push:
+    branches:
+      - 'feat/**'
+      - 'fix/**'
+      - 'docs/**'
+      - 'refactor/**'
+      - 'chore/**'
+      - 'test/**'
+
+permissions:
+  contents: read
+  pull-requests: write
+  issues: read
+
+jobs:
+  open-pr:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Extract metadata
+        id: meta
+        run: |
+          BRANCH="${GITHUB_REF#refs/heads/}"
+          TYPE="${BRANCH%%/*}"
+          REST="${BRANCH#*/}"
+          ISSUE="${REST%%-*}"
+          if ! [[ "$ISSUE" =~ ^[0-9]+$ ]]; then ISSUE=""; fi
+          echo "branch=$BRANCH" >> "$GITHUB_OUTPUT"
+          echo "type=$TYPE"     >> "$GITHUB_OUTPUT"
+          echo "issue=$ISSUE"   >> "$GITHUB_OUTPUT"
+
+      - name: Open or update PR
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH: ${{ steps.meta.outputs.branch }}
+          TYPE: ${{ steps.meta.outputs.type }}
+          ISSUE: ${{ steps.meta.outputs.issue }}
+        run: |
+          set -euo pipefail
+          if gh pr view "$BRANCH" --json number >/dev/null 2>&1; then
+            echo "PR already exists for $BRANCH; skipping."
+            exit 0
+          fi
+          TITLE="$TYPE: ${BRANCH#*/}"
+          BODY="Automated PR for branch \`$BRANCH\`."
+          if [ -n "$ISSUE" ]; then
+            BODY="$BODY"$'\n\n'"Closes #$ISSUE."
+          fi
+          gh pr create \
+            --base develop \
+            --head "$BRANCH" \
+            --title "$TITLE" \
+            --body "$BODY"

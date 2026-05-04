@@ -39,3 +39,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Workflow-template setup scratch space
+.workflow-staging/
+
+# Workflow-template install metadata (machine-specific)
+.workflow/
