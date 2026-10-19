@@ -45,3 +45,6 @@ next-env.d.ts
 
 # Workflow-template install metadata (machine-specific)
 .workflow/
+
+# Notas internas de las fichas (privadas, no se versionan)
+docs/fichas/_privado/
