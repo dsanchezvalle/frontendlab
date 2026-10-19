@@ -40,6 +40,8 @@ Trotamundos es una aplicación web instalable, sin framework, que **abre directa
 
 Es la pieza visible de un sistema más amplio. Está la planeación y las reservas previas, hechas con apoyo de IA sobre fuentes de verdad documentadas. Y hay un acompañamiento de soporte humano durante todo el viaje.
 
+El modelo es **híbrido**: la guía de cada destino empieza con información general y se va actualizando con lo que se confirma durante el viaje (vuelos, traslados, desplazamientos). Cubre todas las dimensiones del viaje: alojamiento, trámites, dinero, idioma, planes y servicios turísticos, y prevención de estafas comunes.
+
 **Mi rol:** producto, investigación, diseño de interacción, especificación con criterios de aceptación y decisión final sobre cada cambio. La implementación la hice con agentes de IA (ver "IA en este proyecto").
 
 **Intención:** que la complejidad quedara de nuestro lado y no del lado de los viajeros.
@@ -64,7 +66,7 @@ No los definí al inicio. Aparecieron al repetirse en varias decisiones.
 
 1. **Nada depende de que los viajeros configuren algo.** No hay cuentas, contraseñas, selector de tamaño de letra ni voces por descargar.
 2. **Menos niveles, más información en la primera pantalla.** Cada nivel de navegación que se eliminó fue un toque menos y un lugar menos donde perderse.
-3. **Una sola fuente de verdad, sin datos inventados y actualizable a medida que avanza el viaje.** Lo que no está confirmado aparece como "(pendiente)" y nunca como un dato. Cuando se confirma, se actualiza en un solo lugar y llega al celular de los viajeros sin que tengan que hacer nada.
+3. **Una sola fuente de verdad, sin datos inventados y actualizable a medida que avanza el viaje.** Lo que no está confirmado aparece como "(pendiente)" y nunca como un dato. Cuando se confirma, se actualiza en un solo lugar y llega al celular de los viajeros sin que tengan que hacer nada. Así, una tarjeta pasa de información general a información confirmada.
 4. **Los mismos componentes en todas partes.** Pocas tarjetas, siempre con el mismo comportamiento, se aprenden una sola vez.
 5. **Hoy tiene que bastar de un vistazo; lo detallado queda disponible para quien lo busque.** Este principio salió de los datos de uso, no del diseño inicial.
 
@@ -87,6 +89,50 @@ La aplicación es la última capa. Antes hubo un trabajo de planeación y reserv
 Sobre esa base trabajan **dos personas como agentes de soporte humano: mi hermana y yo.** Consultamos las mismas fuentes que alimentan la aplicación, confirmamos cambios (un vuelo reprogramado, un traslado aprobado), los actualizamos y respondemos lo que la aplicación no alcanza a resolver.
 
 **Hacia dónde puede crecer:** este esquema de fuentes de verdad, guía del momento y soporte humano con contexto compartido podría convertirse en un servicio de **agentes de viaje en vivo, tipo concierge**, para otros viajeros que necesiten acompañamiento. [DECIDIR: si lo mencionas como visión o lo dejas fuera]
+
+### Un modelo híbrido: de lo general a lo confirmado
+
+**Elegí:** que cada guía combinara dos tipos de información.
+
+- **Información general**, preparada antes del viaje: cómo funciona el transporte en la ciudad, qué ver, cómo pagar, qué costumbres tener en cuenta.
+- **Información confirmada**, que llega durante el viaje y reemplaza a la general en cuanto existe: el horario reconfirmado de un vuelo, una asistencia en el aeropuerto aprobada, el traslado coordinado con el alojamiento, la distancia real desde el hotel hasta un mirador.
+
+**Cómo funciona:**
+
+- Una tarjeta nace con lo que se sabe y marca lo demás como "(pendiente)".
+- Cuando el soporte humano confirma un dato, se actualiza en la fuente de verdad y la tarjeta cambia en el celular de los viajeros, sin que tengan que hacer nada.
+- En dos casos la información llega en tiempo real:
+  - el aviso oficial de una actividad que depende del clima, que la aplicación consulta en la fuente oficial y explica en español, con la opción de volver a revisar;
+  - lugares conocidos cerca de donde están, si ya dieron el permiso de ubicación.
+
+  Sin conexión, la aplicación muestra lo guardado y dice a quién preguntar.
+
+**Cuando el plan cambia:** si una actividad se cancela, la guía no se queda con el plan viejo. Se actualiza con la alternativa (por ejemplo, cómo ver la actividad desde un mirador en lugar de participar en ella) y con la hora límite para decidir.
+
+**Descarté:**
+
+- **Una guía cerrada antes de salir.** Es más simple de preparar, pero un viaje de dos meses cambia todos los días.
+- **Mandar los cambios solo por mensajes.** Llegan rápido, pero se pierden en el chat y no quedan en el lugar donde los viajeros los van a buscar.
+
+**Costo asumido:** el soporte humano tiene que confirmar y actualizar durante todo el viaje. Cada cambio pasa por la fuente de verdad, el build y las pruebas antes de publicarse.
+
+### Las dimensiones del viaje
+
+La guía no se limita a cómo llegar. Cada destino cubre las dimensiones que un viajero mayor necesita resolver por su cuenta:
+
+| Dimensión | Qué resuelve | Cómo se presenta |
+|---|---|---|
+| Llegada y traslados | Del avión al alojamiento y del alojamiento al siguiente destino | Trayectos con formato de pase de abordar, migración paso a paso, asistencia en el aeropuerto |
+| Alojamiento | Entrar, comunicarse y volver | Tarjeta con dirección en el idioma del lugar, "Mostrar al taxista", Llamar y WhatsApp |
+| Trámites y documentos | Qué papel se necesita en cada momento | Papeles por etapa, con la sección de la carpeta física |
+| Dinero | Pagar y retirar sin perder en la conversión | Casos de cajeros y terminales de pago, con ilustraciones y la recomendación de pagar en moneda local |
+| Idioma | Hacerse entender | Frases con pronunciación, cajas "Para mostrar" en el idioma del país |
+| Planes y servicios turísticos | Qué hacer y cómo llegar | Ideas con foto, duración y esfuerzo; lugares cerca; servicios contratados |
+| Estafas comunes | Reconocerlas antes de caer | Secciones por destino donde son frecuentes, y avisos como "Nadie les va a pedir pagar ni dar la tarjeta por WhatsApp" |
+| Movilidad | Moverse con autonomía | Casos desplegables, por ejemplo para manejar un carro alquilado: gasolina, parqueo, qué hacer si pasa algo |
+| Salud y emergencias | Actuar rápido | Número de emergencias del país, seguro con mensaje listo y "¿Qué hacer si…?" |
+
+**Por qué importa:** todas las dimensiones usan los mismos componentes (principio 4), así que una dimensión nueva no exige aprender una pantalla nueva.
 
 ### Decisión 1 · Eliminar niveles de navegación
 
